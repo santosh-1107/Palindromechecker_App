@@ -1,28 +1,36 @@
-/*
- * UseCase1: Application Entry & Welcome Message
- * Palindrome Checker App
- * Version: 1.0
- */
-
 class PalindromeChecker_App {
 
-    // Application constants
     static final String APP_NAME = "PalindromeChecker_App";
     static final String VERSION = "Version 1.0";
 
-    // Main Method - Entry point of the application
+
     public static void main(String[] args) {
 
-        // Display Welcome Message
-        System.out.println("=====================================");
-        System.out.println("       " + APP_NAME);
-        System.out.println("       " + VERSION);
-        System.out.println("=====================================");
-        System.out.println("Welcome to the Palindrome Checker Application!");
-        System.out.println("This application will check whether a given string is a palindrome.");
-        System.out.println("=====================================");
+        String word = "madam";
 
-        // End of UC1
-        System.out.println("system initialized successfully");
+        System.out.println("Palindrome Checker App - UC2");
+        System.out.println("---------------------------------");
+        System.out.println("Given Word: " + word);
+
+
+        boolean isPalindrome = true;
+
+
+        for (int i = 0; i < word.length() / 2; i++) {
+
+            if (word.charAt(i) != word.charAt(word.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+
+        if (isPalindrome) {
+            System.out.println("Result: The given word is a Palindrome.");
+        } else {
+            System.out.println("Result: The given word is NOT a Palindrome.");
+        }
+
+        System.out.println("\nProgram executed successfully.");
     }
 }
