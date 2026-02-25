@@ -1,25 +1,42 @@
-import java.util.*;
+class PalindromeChecker {
+
+    public boolean checkPalindrome(String input) {
+
+        if (input == null || input.length() == 0) {
+            return false;
+        }
+
+        // Initialize pointers
+        int start = 0;
+        int end = input.length() - 1;
+
+        // Compare characters moving inward
+        while (start < end) {
+
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
+            }
+
+            start++;
+            end--;
+        }
+
+        return true;
+    }
+}
+
 
 class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "A man a plan a canal Panama";
+            String input = "racecar";
 
-        String normalized = input.toLowerCase().replaceAll("\\s+", "");
+            PalindromeChecker checker = new PalindromeChecker();
 
-        boolean isPalindrome = true;
+            boolean result = checker.checkPalindrome(input);
 
-        for (int i = 0; i < normalized.length() / 2; i++) {
-
-            if (normalized.charAt(i) !=
-                    normalized.charAt(normalized.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
-            }
+            System.out.println("Input : " + input);
+            System.out.println("Is Palindrome? : " + result);
         }
-
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
     }
-}
