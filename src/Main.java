@@ -1,57 +1,38 @@
-import java.util.Stack;
-interface PalindromeStrategy {
-    boolean check(String input);
-}
-class StackStrategy implements PalindromeStrategy {
 
-    @Override
-    public boolean check(String input) {
+class PalindromeCheckerApp {
+    public static boolean checkPalindrome(String input) {
 
-        Stack<Character> stack = new Stack<>();
+        int start = 0;
+        int end = input.length() - 1;
 
-        for (char c : input.toCharArray()) {
-            stack.push(c);
-        }
-
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
                 return false;
             }
+            start++;
+            end--;
         }
 
         return true;
     }
-}
-
-class PalindromeService {
-
-    private PalindromeStrategy strategy;
-
-    public PalindromeService(PalindromeStrategy strategy) {
-        this.strategy = strategy;
-    }
-
-    public boolean execute(String input) {
-        return strategy.check(input);
-    }
-}
-
-
-class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
 
-            String input = "level";
+        String input = "level";
 
-            // Inject strategy at runtime
-            PalindromeStrategy strategy = new StackStrategy();
+        // Start time
+        long startTime = System.nanoTime();
 
-            PalindromeService service = new PalindromeService(strategy);
+        boolean result = checkPalindrome(input);
 
-            boolean result = service.execute(input);
+        // End time
+        long endTime = System.nanoTime();
 
-            System.out.println("Input : " + input);
-            System.out.println("Is Palindrome? : " + result);
-        }
+        long executionTime = endTime - startTime;
+
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + result);
+        System.out.println("Execution Time : " + executionTime + " ns");
     }
+}
